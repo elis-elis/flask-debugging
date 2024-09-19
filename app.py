@@ -1,8 +1,10 @@
+from dotenv import load_dotenv
 from flask import Flask, jsonify
 from services.iss_service import *
 from config.config import Config
 
 
+load_dotenv()   # This will load the variables from the .env file into the environment
 app = Flask(__name__)
 app.config.from_object(Config)
 

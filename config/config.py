@@ -6,3 +6,4 @@ class Config:
     HOST = os.environ.get('FLASK_HOST', '0.0.0.0')
     PORT = int(os.environ.get('FLASK_PORT', 5000))  # Convert PORT to an integer
     ISS_API_BASE_URL = os.environ.get('ISS_API_BASE_URL', 'http://api.open-notify.org')
+    LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')  # New config for log level
