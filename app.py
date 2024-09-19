@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import logging
 from flask import Flask, jsonify
 from services.iss_service import *
 from config.config import Config
@@ -7,6 +8,15 @@ from config.config import Config
 load_dotenv()   # This will load the variables from the .env file into the environment
 app = Flask(__name__)
 app.config.from_object(Config)
+
+
+logging.basicConfig(
+    level=getattr(logging, Config.LOG_LEVEL),
+    format='%(asctime)s - &(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+
+logging.info("Starting Flask ISS Tracking App")
 
 
 @app.route('/api/iss-location', methods=['GET'])
