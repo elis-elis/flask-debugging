@@ -1,7 +1,7 @@
-from datetime import datetime
 import requests
 from flask import Flask, jsonify
 from config.config import Config
+from utils.time_utils import convert_timestamp
 
 
 app = Flask(__name__)
@@ -44,10 +44,6 @@ def get_iss_pass_times(lat, lon):
         return {'error': 'Unable to fetch ISS pass times'}
 
 
-def convert_timestamp(timestamp):
-    return datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')
-
-
 @app.route('/api/iss-location', methods=['GET'])
 def iss_location():
     location = get_iss_location()
@@ -63,4 +59,3 @@ def iss_pass(lat, lon):
 if __name__ == '__main__':
     app.run(debug=app.config['DEBUG'],
             host=app.config['HOST'], port=app.config['PORT'])
-    
